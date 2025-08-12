@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Os Subestimados - Battle Ready</title>
+    <meta name="description" content="Preparação estratégica para debate - Os Subestimados Gaming Studio">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #b71c1c;
+            --secondary-red: #d32f2f;
+            --accent-orange: #ff6600;
+            --success-green: #4caf50;
+            --warning-orange: #ff9800;
+            --info-blue: #2196f3;
+            --dark-bg: #0a0a0a;
+            --card-bg: rgba(26, 26, 26, 0.9);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #e0e0e0;
+            --text-secondary: #ccc;
+            --border-glass: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 20px var(--primary-red);
+        }
+
+        .cursor.hover {
+            transform: scale(1.5);
+            background: var(--accent-orange);
+            box-shadow: 0 0 30px var(--accent-orange);
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(183, 28, 28, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 102, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(10,10,10,1) 100%);
+            z-index: -1;
+            animation: backgroundPulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes backgroundPulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Improved Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px) rotateY(-45deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotateY(0deg);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px) rotateY(45deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotateY(0deg);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) rotateZ(-5deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotateZ(0deg);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(183, 28, 28, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(183, 28, 28, 0.8);
+            }
+        }
+
+        .animate-in-left {
+            animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        .animate-in-right {
+            animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        .animate-scale {
+            animation: scaleIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+        }
+
+        /* Glass Morphism */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+        }
+
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Header Enhanced */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(30px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--primary-red);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .header.scrolled {
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(40px);
+            transform: translateY(0);
+            box-shadow: 0 10px 40px rgba(183, 28, 28, 0.2);
+        }
+
+        .nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            text-shadow: 0 0 20px rgba(183, 28, 28, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 30px rgba(183, 28, 28, 1);
+        }
+
+        .logo i {
+            font-size: 2rem;
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-orange));
+            border-radius: 8px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 0.2;
+            transform: scale(1);
+        }
+
+        .nav-links a:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .export-btn {
+            background: linear-gradient(45deg, var(--primary-red), var(--secondary-red));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .export-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .export-btn:hover::before {
+            left: 100%;
+        }
+
+        .export-btn:hover {
+            background: linear-gradient(45deg, var(--secondary-red), var(--accent-orange));
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(183, 28, 28, 0.4);
+        }
+
+        /* Hero Section Enhanced */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 140, 0, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(183, 28, 28, 0.25) 0%, transparent 50%);
+            animation: heroBackground 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes heroBackground {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 0 2rem;
+            animation: heroEnter 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes heroEnter {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 2rem;
+        }
+
+        .title-main {
+            display: block;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, var(--primary-red), var(--accent-orange));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 3s ease-in-out infinite;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(183, 28, 28, 0.5);
+        }
+
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .title-sub {
+            display: block;
+            font-size: 2rem;
+            color: var(--accent-orange);
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(255, 102, 0, 0.7);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid var(--border-glass);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat:hover::before {
+            opacity: 0.1;
+        }
+
+        .stat:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 25px 60px rgba(183, 28, 28, 0.3);
+            border-color: var(--primary-red);
+        }
+
+        .stat i {
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat:hover i {
+            transform: scale(1.2) rotateY(360deg);
+            color: var(--accent-orange);
+        }
+
+        .stat-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', monospace;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Enhanced Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(183, 28, 28, 0.5);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-orange));
+            border-radius: 2px;
+        }
+
+        /* Cards Enhanced */
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-red);
+            box-shadow: 0 25px 60px rgba(183, 28, 28, 0.2);
+        }
+
+        /* Strategy Section */
+        .strategy-section {
+            background: rgba(183, 28, 28, 0.02);
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .strategy-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .strategy-card:hover::after {
+            opacity: 0.05;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-10px) rotateX(2deg);
+            border-color: var(--primary-red);
+            box-shadow: 0 30px 70px rgba(183, 28, 28, 0.3);
+        }
+
+        .strategy-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .strategy-card:hover .strategy-icon {
+            transform: rotateY(360deg) scale(1.1);
+        }
+
+        /* Concepts Section */
+        .concepts-section {
+            background: rgba(76, 175, 80, 0.02);
+        }
+
+        .concepts-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 4rem auto;
+            opacity: 0.9;
+        }
+
+        .concepts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .concept-card {
+            background: var(--glass-strong);
+            border: 2px solid var(--border-glass);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 35px 80px rgba(183, 28, 28, 0.25);
+        }
+
+        .concept-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: white;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .concept-card:hover .concept-icon {
+            transform: rotateY(720deg) scale(1.2);
+        }
+
+        /* STAR Method Styling */
+        .star-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .star-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-red);
+            transition: all 0.3s ease;
+        }
+
+        .star-item:hover {
+            background: rgba(183, 28, 28, 0.1);
+            transform: translateX(10px);
+        }
+
+        .star-letter {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            font-family: 'Orbitron', monospace;
+            min-width: 40px;
+            text-align: center;
+            background: rgba(183, 28, 28, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Arguments Section */
+        .arguments-section {
+            background: rgba(33, 150, 243, 0.02);
+        }
+
+        .arguments-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .arguments-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-red), var(--accent-orange));
+        }
+
+        .argument-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-left: 120px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .argument-card::before {
+            content: '';
+            position: absolute;
+            left: -135px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            border: 4px solid var(--dark-bg);
+            box-shadow: 0 0 20px rgba(183, 28, 28, 0.5);
+        }
+
+        .argument-card:hover {
+            transform: translateX(20px) translateY(-5px);
+            border-color: var(--primary-red);
+            box-shadow: 0 25px 60px rgba(183, 28, 28, 0.2);
+        }
+
+        .time-marker {
+            position: absolute;
+            left: -115px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            font-family: 'Orbitron', monospace;
+        }
+
+        /* Replies Section */
+        .replies-section {
+            background: rgba(255, 152, 0, 0.02);
+        }
+
+        .replies-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .reply-category {
+            background: var(--glass-strong);
+            border: 2px solid var(--border-glass);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reply-category:hover {
+            transform: translateY(-10px);
+            border-color: var(--warning-orange);
+            box-shadow: 0 30px 70px rgba(255, 152, 0, 0.2);
+        }
+
+        .reply-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .reply-card {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-glass);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .reply-card:hover {
+            background: rgba(255, 152, 0, 0.1);
+            border-color: var(--warning-orange);
+            transform: translateY(-5px);
+        }
+
+        /* Evidence Section */
+        .evidence-section {
+            background: rgba(76, 175, 80, 0.02);
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .evidence-card {
+            background: var(--glass-strong);
+            border: 2px solid var(--border-glass);
+            border-radius: 25px;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .evidence-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--success-green);
+            box-shadow: 0 30px 70px rgba(76, 175, 80, 0.2);
+        }
+
+        .evidence-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-glass);
+        }
+
+        .evidence-header i {
+            font-size: 2rem;
+            color: var(--success-green);
+        }
+
+        .evidence-header h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--success-green);
+            font-size: 1.5rem;
+        }
+
+        /* Final Section */
+        .final-section {
+            background: rgba(183, 28, 28, 0.05);
+            padding: 120px 0;
+        }
+
+        .closing-strategy {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .closing-card {
+            background: var(--glass-strong);
+            border: 3px solid var(--primary-red);
+            border-radius: 30px;
+            padding: 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .closing-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .closing-speech {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 10;
+        }
+
+        .final-line {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            font-family: 'Cinzel', serif;
+            margin-top: 2rem;
+            text-shadow: 0 0 20px rgba(183, 28, 28, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 4rem 0 2rem;
+            border-top: 2px solid var(--primary-red);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #666;
+        }
+
+        /* Enhanced HUD */
+        .battle-hud {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(25px);
+            border: 2px solid var(--primary-red);
+            border-radius: 15px;
+            padding: 1.5rem;
+            z-index: 9999;
+            font-family: 'Orbitron', monospace;
+            color: white;
+            min-width: 300px;
+            box-shadow: 0 20px 60px rgba(183, 28, 28, 0.3);
+            transform: translateX(-350px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .battle-hud.active {
+            transform: translateX(0);
+        }
+
+        .hud-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--primary-red);
+        }
+
+        .hud-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        .hud-toggle {
+            background: var(--primary-red);
+            border: none;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hud-toggle:hover {
+            background: var(--accent-orange);
+            transform: scale(1.1);
+        }
+
+        .timer-display {
+            margin-bottom: 1.5rem;
+        }
+
+        .timer-phase {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timer-time {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(183, 28, 28, 0.1);
+            border-radius: 10px;
+            border: 1px solid var(--primary-red);
+        }
+
+        .timer-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .timer-btn {
+            background: linear-gradient(45deg, var(--primary-red), var(--secondary-red));
+            color: white;
+            border: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .timer-btn:hover {
+            background: linear-gradient(45deg, var(--secondary-red), var(--accent-orange));
+            transform: translateY(-2px);
+        }
+
+        .timer-btn.stop {
+            background: linear-gradient(45deg, #666, #999);
+        }
+
+        /* Keyboard Shortcuts Display */
+        .shortcuts-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(25px);
+            border: 2px solid var(--info-blue);
+            border-radius: 15px;
+            padding: 1.5rem;
+            z-index: 9998;
+            font-family: 'Orbitron', monospace;
+            color: white;
+            min-width: 250px;
+            box-shadow: 0 20px 60px rgba(33, 150, 243, 0.3);
+            transform: translateY(350px);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .shortcuts-panel.active {
+            transform: translateY(0);
+        }
+
+        .shortcuts-title {
+            color: var(--info-blue);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .shortcut-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            background: rgba(33, 150, 243, 0.1);
+            border-radius: 5px;
+        }
+
+        .shortcut-key {
+            background: var(--info-blue);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .shortcut-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Status Indicator */
+        .status-indicator {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            z-index: 9997;
+        }
+
+        .status-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--success-green);
+            box-shadow: 0 0 20px var(--success-green);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        .status-dot.warning {
+            background: var(--warning-orange);
+            box-shadow: 0 0 20px var(--warning-orange);
+        }
+
+        .status-dot.error {
+            background: #f44336;
+            box-shadow: 0 0 20px #f44336;
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Toast Notifications Enhanced */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            z-index: 10001;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            font-weight: 500;
+            max-width: 400px;
+            border: 2px solid rgba(255,255,255,0.2);
+            font-family: 'Orbitron', monospace;
+            backdrop-filter: blur(20px);
+            transform: translateX(500px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-battle {
+            background: linear-gradient(45deg, var(--primary-red), var(--accent-orange));
+            color: white;
+            border-color: var(--primary-red);
+        }
+
+        .toast-success {
+            background: linear-gradient(45deg, var(--success-green), #66bb6a);
+            color: white;
+            border-color: var(--success-green);
+        }
+
+        .toast-error {
+            background: linear-gradient(45deg, #f44336, #e57373);
+            color: white;
+            border-color: #f44336;
+        }
+
+        .toast-warning {
+            background: linear-gradient(45deg, var(--warning-orange), #ffb74d);
+            color: white;
+            border-color: var(--warning-orange);
+        }
+
+        .toast-info {
+            background: linear-gradient(45deg, var(--info-blue), #64b5f6);
+            color: white;
+            border-color: var(--info-blue);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .title-main {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .concepts-grid,
+            .strategy-grid,
+            .evidence-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .argument-card {
+                margin-left: 0;
+            }
+            
+            .arguments-timeline::before {
+                display: none;
+            }
+            
+            .time-marker {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+                transform: none;
+            }
+            
+            .battle-hud,
+            .shortcuts-panel {
+                display: none;
+            }
+            
+            .cursor {
+                display: none;
+            }
+            
+            body {
+                cursor: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title-main {
+                font-size: 2rem;
+            }
+            
+            .title-sub {
+                font-size: 1.4rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .stat {
+                min-width: 150px;
+                padding: 1.5rem;
+            }
+        }
+
+        /* Battle Mode Styles */
+        body.battle-mode {
+            filter: contrast(1.2) saturate(1.3);
+        }
+
+        body.battle-mode .hero::before {
+            animation: battlePulse 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes battlePulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1.2; }
+        }
+
+        /* Highlighted Cards */
+        .highlighted {
+            border: 3px solid var(--accent-orange) !important;
+            box-shadow: 0 0 40px rgba(255, 102, 0, 0.5) !important;
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        .highlighted::after {
+            content: '⭐';
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 2rem;
+            z-index: 100;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+
+    <!-- Floating Particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Battle HUD -->
+    <div class="battle-hud" id="battle-hud">
+        <div class="hud-header">
+            <div class="hud-title">⚔️ BATTLE HUD</div>
+            <button class="hud-toggle" onclick="toggleBattleHUD()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="timer-display">
+            <div class="timer-phase">Preparação</div>
+            <div class="timer-time">00:00</div>
+        </div>
+        <div class="timer-controls">
+            <button class="timer-btn" onclick="startDebatePhase('opening')">
+                🎯 Argumentos (5min)
+            </button>
+            <button class="timer-btn" onclick="startDebatePhase('reply')">
+                🛡️ Réplica (3min)
+            </button>
+            <button class="timer-btn" onclick="startDebatePhase('closing')">
+                🏆 Fechamento (3min)
+            </button>
+            <button class="timer-btn stop" onclick="stopDebateTimer()">
+                ⏹️ Parar Timer
+            </button>
+        </div>
+    </div>
+
+    <!-- Shortcuts Panel -->
+    <div class="shortcuts-panel" id="shortcuts-panel">
+        <div class="shortcuts-title">⌨️ ATALHOS</div>
+        <div class="shortcut-item">
+            <span class="shortcut-key">H</span>
+            <span class="shortcut-desc">Toggle HUD</span>
+        </div>
+        <div class="shortcut-item">
+            <span class="shortcut-key">T</span>
+            <span class="shortcut-desc">Timer</span>
+        </div>
+        <div class="shortcut-item">
+            <span class="shortcut-key">B</span>
+            <span class="shortcut-desc">Battle Mode</span>
+        </div>
+        <div class="shortcut-item">
+            <span class="shortcut-key">1/2/3</span>
+            <span class="shortcut-desc">Fases</span>
+        </div>
+        <div class="shortcut-item">
+            <span class="shortcut-key">SPACE</span>
+            <span class="shortcut-desc">Motivação</span>
+        </div>
+        <div class="shortcut-item">
+            <span class="shortcut-key">ESC</span>
+            <span class="shortcut-desc">Zen Mode</span>
+        </div>
+    </div>
+
+    <!-- Status Indicator -->
+    <div class="status-indicator">
+        <div class="status-dot" title="Sistema Online"></div>
+        <div class="status-dot warning" title="Battle Mode Standby"></div>
+        <div class="status-dot" title="Preparação Completa"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>Os Subestimados - Battle Ready</span>
+            </div>
+            <div class="nav-links">
+                <a href="#strategy">Estratégia</a>
+                <a href="#arguments">Argumentos</a>
+                <a href="#replies">Arsenal</a>
+                <a href="#evidence">Evidências</a>
+            </div>
+            <div class="header-actions">
+                <button class="export-btn" onclick="exportDebateGuide()">
+                    <i class="fas fa-download"></i>
+                    Guia Completo
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-main">OS SUBESTIMADOS</span>
+                <span class="title-sub">BATTLE READY</span>
+            </h1>
+            <p class="hero-description">
+                Preparação completa para dominar o debate sobre <strong>"Exorcismo: Ritual Final"</strong><br>
+                Argumentação estruturada • Evidências sólidas • Vitória garantida
+            </p>
+            
+            <div class="hero-stats">
+                <div class="stat battle">
+                    <i class="fas fa-target"></i>
+                    <span class="stat-value">100%</span>
+                    <span class="stat-label">Preparação</span>
+                </div>
+                <div class="stat battle">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="stat-value">15+</span>
+                    <span class="stat-label">Argumentos</span>
+                </div>
+                <div class="stat battle">
+                    <i class="fas fa-crosshairs"></i>
+                    <span class="stat-value">50+</span>
+                    <span class="stat-label">Réplicas</span>
+                </div>
+                <div class="stat battle">
+                    <i class="fas fa-trophy"></i>
+                    <span class="stat-value">∞</span>
+                    <span class="stat-label">Confiança</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Concepts Section -->
+    <section class="section concepts-section" id="concepts">
+        <div class="container">
+            <h2 class="section-title">📚 Conceitos Profissionais Aplicados</h2>
+            <p class="concepts-intro">
+                Antes de entrar na estratégia, vamos mostrar como aplicamos na prática os conceitos que aprendemos nas aulas de Carreiras
+            </p>
+            
+            <div class="concepts-grid">
+                <div class="concept-card star">
+                    <div class="concept-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Método STAR</h3>
+                    <p class="concept-subtitle">Situation • Task • Action • Result</p>
+                    <div class="star-breakdown">
+                        <div class="star-item">
+                            <span class="star-letter">S</span>
+                            <div>
+                                <strong>Situação:</strong>
+                                <p>Mercado indie saturado, competição alta, necessidade de diferenciação</p>
+                            </div>
+                        </div>
+                        <div class="star-item">
+                            <span class="star-letter">T</span>
+                            <div>
+                                <strong>Tarefa:</strong>
+                                <p>Lançar jogo de horror com alcance global e ROI positivo em 2 meses</p>
+                            </div>
+                        </div>
+                        <div class="star-item">
+                            <span class="star-letter">A</span>
+                            <div>
+                                <strong>Ação:</strong>
+                                <p>Parcerias estratégicas + timing Halloween + demo gratuita viral</p>
+                            </div>
+                        </div>
+                        <div class="star-item">
+                            <span class="star-letter">R</span>
+                            <div>
+                                <strong>Resultado:</strong>
+                                <p>2.8M downloads, R$ 8.2M receita, ROI médio 1.700%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="concept-card skills">
+                    <div class="concept-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Soft Skills vs Hard Skills</h3>
+                    <p class="concept-subtitle">Competências aplicadas no projeto</p>
+                    <div class="skills-comparison">
+                        <div class="skills-column">
+                            <h4><i class="fas fa-cog"></i> Hard Skills</h4>
+                            <ul class="skills-list">
+                                <li>Desenvolvimento de software</li>
+                                <li>Análise de dados e métricas</li>
+                                <li>Gestão de projetos técnicos</li>
+                                <li>Marketing digital</li>
+                                <li>Negociação comercial</li>
+                            </ul>
+                        </div>
+                        <div class="skills-column">
+                            <h4><i class="fas fa-users"></i> Soft Skills</h4>
+                            <ul class="skills-list">
+                                <li>Comunicação eficaz</li>
+                                <li>Liderança de equipe</li>
+                                <li>Trabalho colaborativo</li>
+                                <li>Resolução de problemas</li>
+                                <li>Adaptabilidade</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skills-result">
+                        <strong>💡 Insight:</strong> Hard skills abrem portas, soft skills constroem carreiras. 
+                        Nosso sucesso veio da combinação equilibrada de ambas.
+                    </div>
+                </div>
+                
+                <div class="concept-card stakeholders">
+                    <div class="concept-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Gestão de Stakeholders</h3>
+                    <p class="concept-subtitle">Mapeamento e relacionamento estratégico</p>
+                    <div class="stakeholders-map">
+                        <div class="stakeholder-group primary">
+                            <h4>🎯 Stakeholders Primários</h4>
+                            <ul>
+                                <li><strong>Steam:</strong> Parceria principal - 42% dos downloads</li>
+                                <li><strong>PlayStation:</strong> Trailer exclusivo - 30% dos downloads</li>
+                                <li><strong>Xbox:</strong> Game Pass inclusion - 22% dos downloads</li>
+                                <li><strong>Usuários finais:</strong> 2.8M jogadores engajados</li>
+                            </ul>
+                        </div>
+                        <div class="stakeholder-group secondary">
+                            <h4>📢 Stakeholders Secundários</h4>
+                            <ul>
+                                <li><strong>Influencers:</strong> 50+ streamers, 12.3M views</li>
+                                <li><strong>Mídia:</strong> Reviews e cobertura especializada</li>
+                                <li><strong>Comunidade:</strong> Feedback e word-of-mouth</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy Section -->
+    <section class="section strategy-section" id="strategy">
+        <div class="container">
+            <h2 class="section-title">⚔️ Estratégia Principal</h2>
+            
+            <div class="strategy-grid">
+                <div class="strategy-card primary">
+                    <div class="strategy-icon">
+                        <i class="fas fa-chess-king"></i>
+                    </div>
+                    <h3>Argumento Central</h3>
+                    <p><strong>"Setores Diferentes, Realidades Diferentes"</strong></p>
+                    <div class="strategy-details">
+                        <p>Gaming digital e alimentício operam em universos completamente distintos. Nossos números não são apenas possíveis - são conservadores para o mercado digital global.</p>
+                    </div>
+                </div>
+                
+                <div class="strategy-card defensive">
+                    <div class="strategy-icon">
+                        <i class="fas fa-shield"></i>
+                    </div>
+                    <h3>Estratégia Defensiva</h3>
+                    <p><strong>Civilidade & Respeito</strong></p>
+                    <div class="strategy-details">
+                        <p>Manter tom respeitoso, reconhecer pontos fortes dos oponentes, focar em dados objetivos. Transformar possíveis ataques em oportunidades de mostrar profissionalismo.</p>
+                    </div>
+                </div>
+                
+                <div class="strategy-card offensive">
+                    <div class="strategy-icon">
+                        <i class="fas fa-sword"></i>
+                    </div>
+                    <h3>Estratégia Ofensiva</h3>
+                    <p><strong>Evidências Irrefutáveis</strong></p>
+                    <div class="strategy-details">
+                        <p>Usar dados de mercado, comparações com jogos similares, ROI das parcerias. Demonstrar conhecimento técnico superior sem desrespeitar oponentes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arguments Section -->
+    <section class="section arguments-section" id="arguments">
+        <div class="container">
+            <h2 class="section-title">🎯 Argumentos Iniciais (5 minutos)</h2>
+            
+            <div class="arguments-timeline">
+                <div class="argument-card">
+                    <div class="time-marker">0-1min</div>
+                    <h3>🎮 Abertura & Identificação</h3>
+                    <div class="argument-content">
+                        <p><strong>"Somos Os Subestimados Gaming Studio, desenvolvedores de 'Exorcismo: Ritual Final'."</strong></p>
+                        <ul>
+                            <li>Apresentar equipe e produto</li>
+                            <li>Agradecer oportunidade de debate</li>
+                            <li>Demonstrar respeito pelos oponentes</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="argument-card">
+                    <div class="time-marker">1-2min</div>
+                    <h3>📊 Realidade dos Setores</h3>
+                    <div class="argument-content">
+                        <p><strong>"Primeiro, é importante esclarecer: não somos concorrentes."</strong></p>
+                        <ul>
+                            <li>Gaming digital vs Alimentício físico</li>
+                            <li>Mercados complementares, não competitivos</li>
+                            <li>Escalabilidade digital vs limitações físicas</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="argument-card">
+                    <div class="time-marker">2-3min</div>
+                    <h3>🌍 Alcance Multiplataforma</h3>
+                    <div class="argument-content">
+                        <p><strong>"Nossos números são resultado de parcerias estratégicas globais."</strong></p>
+                        <ul>
+                            <li>Steam: 132M usuários ativos</li>
+                            <li>PlayStation: 108M usuários ativos</li>
+                            <li>Xbox: 120M usuários ativos</li>
+                            <li>Total: 360M+ usuários simultâneos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="argument-card">
+                    <div class="time-marker">3-4min</div>
+                    <h3>🎃 Timing Estratégico</h3>
+                    <div class="argument-content">
+                        <p><strong>"Halloween + Horror + Marketing = Fórmula de sucesso."</strong></p>
+                        <ul>
+                            <li>Lançamento em outubro (300% boost horror)</li>
+                            <li>Demo viral: 5.2M downloads gratuitos</li>
+                            <li>Filmes de terror em alta (Talk to Me, The Nun II)</li>
+                            <li>YouTube: 50+ influencers, 12.3M views</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="argument-card">
+                    <div class="time-marker">4-5min</div>
+                    <h3>🏆 Comparação de Mercado</h3>
+                    <div class="argument-content">
+                        <p><strong>"Nossos números são conservadores comparado a sucessos similares."</strong></p>
+                        <ul>
+                            <li>Phasmophobia: 10M em 3 meses</li>
+                            <li>Among Us: 500M em 4 meses</li>
+                            <li>Fall Guys: 100M em 2 meses</li>
+                            <li><strong>Nós: 2.8M em 2 meses</strong> (conservador!)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Replies Arsenal Section -->
+    <section class="section replies-section" id="replies">
+        <div class="container">
+            <h2 class="section-title">🛡️ Arsenal de Réplicas</h2>
+            
+            <div class="replies-grid">
+                <div class="reply-category">
+                    <h3><i class="fas fa-question-circle"></i> "Números irreais/impossíveis"</h3>
+                    <div class="reply-options">
+                        <div class="reply-card quick">
+                            <h4>Réplica Rápida (30s)</h4>
+                            <p>"Matemática simples: Steam tem 132M usuários. Nossos 1.2M downloads representam apenas 0.9% da base. No mundo físico seria impossível, no digital é conservador."</p>
+                        </div>
+                        <div class="reply-card detailed">
+                            <h4>Tréplica Detalhada (2min)</h4>
+                            <p>"Vamos aos fatos: distribuição digital permite alcance instantâneo global. Produtos físicos precisam de logística, estoque, distribuição. No digital, um servidor atende o mundo inteiro. É economia básica do século XXI."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reply-category">
+                    <h3><i class="fas fa-handshake"></i> "Somos concorrentes"</h3>
+                    <div class="reply-options">
+                        <div class="reply-card quick">
+                            <h4>Réplica Rápida (30s)</h4>
+                            <p>"Respeitosamente, não somos concorrentes. Vocês atendem o paladar, nós o entretenimento. Setores diferentes, públicos complementares."</p>
+                        </div>
+                        <div class="reply-card detailed">
+                            <h4>Tréplica Detalhada (2min)</h4>
+                            <p>"Na verdade, vemos oportunidades de parceria. Gamers consomem snacks. Imagine um doce temático de Halloween para jogadores de horror. Nossos mercados se complementam perfeitamente."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reply-category">
+                    <h3><i class="fas fa-chart-line"></i> "ROI irreal"</h3>
+                    <div class="reply-options">
+                        <div class="reply-card quick">
+                            <h4>Réplica Rápida (30s)</h4>
+                            <p>"ROI de 1.700% no digital é resultado de margem alta (70%) e escala global. Produtos físicos têm margem menor e limitações logísticas."</p>
+                        </div>
+                        <div class="reply-card detailed">
+                            <h4>Tréplica Detalhada (2min)</h4>
+                            <p>"Uma vez desenvolvido o jogo, cada cópia vendida é 70% de lucro. Vocês têm custos de ingredientes, embalagem, transporte em cada unidade. É a diferença fundamental entre economia digital e física."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reply-category positive">
+                    <h3><i class="fas fa-star"></i> Reconhecimento dos Pontos Fortes</h3>
+                    <div class="reply-options">
+                        <div class="reply-card recognition">
+                            <h4>Estratégia de Reconhecimento</h4>
+                            <p><strong>Laiza:</strong> "Admiramos o conhecimento técnico da Laiza sobre o segmento alimentício. Demonstra expertise real."</p>
+                            <p><strong>Gean e Henrique:</strong> "A rima criativa para o produto foi brilhante. Mostra como criatividade é universal em qualquer setor."</p>
+                            <p><strong>Equipe:</strong> "Vocês têm um produto bem conceituado. Apenas operamos em universos diferentes."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evidence Section -->
+    <section class="section evidence-section" id="evidence">
+        <div class="container">
+            <h2 class="section-title">📈 Banco de Evidências</h2>
+            
+            <div class="evidence-grid">
+                <div class="evidence-card">
+                    <div class="evidence-header">
+                        <i class="fas fa-users"></i>
+                        <h3>Dados de Usuários das Plataformas</h3>
+                    </div>
+                    <div class="evidence-data">
+                        <div class="data-row">
+                            <span class="platform">Steam</span>
+                            <span class="value">132M usuários ativos</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="platform">PlayStation Network</span>
+                            <span class="value">108M usuários ativos</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="platform">Xbox Live</span>
+                            <span class="value">120M usuários ativos</span>
+                        </div>
+                        <div class="data-row total">
+                            <span class="platform">Total Combinado</span>
+                            <span class="value">360M+ usuários</span>
+                        </div>
+                    </div>
+                    <p class="evidence-conclusion">
+                        <strong>Nossos 2.8M downloads = 0.78% do alcance total</strong>
+                    </p>
+                </div>
+                
+                <div class="evidence-card">
+                    <div class="evidence-header">
+                        <i class="fas fa-gamepad"></i>
+                        <h3>Comparação com Jogos Similares</h3>
+                    </div>
+                    <div class="evidence-comparison">
+                        <div class="comparison-item">
+                            <span class="game">Phasmophobia</span>
+                            <span class="numbers">10M downloads em 3 meses</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="game">Among Us</span>
+                            <span class="numbers">500M downloads em 4 meses</span>
+                        </div>
+                        <div class="comparison-item">
+                            <span class="game">Fall Guys</span>
+                            <span class="numbers">100M downloads em 2 meses</span>
+                        </div>
+                        <div class="comparison-item highlight">
+                            <span class="game">Exorcismo: Ritual Final</span>
+                            <span class="numbers">2.8M downloads em 2 meses</span>
+                        </div>
+                    </div>
+                    <p class="evidence-conclusion">
+                        <strong>Nossos números são conservadores para o padrão indie viral</strong>
+                    </p>
+                </div>
+                
+                <div class="evidence-card">
+                    <div class="evidence-header">
+                        <i class="fas fa-dollar-sign"></i>
+                        <h3>ROI das Parcerias</h3>
+                    </div>
+                    <div class="roi-breakdown">
+                        <div class="roi-item">
+                            <span class="partner">Steam Partnership</span>
+                            <span class="investment">R$ 200K investidos</span>
+                            <span class="return">R$ 3.4M retorno</span>
+                            <span class="roi-value">1.700% ROI</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="partner">PlayStation Store</span>
+                            <span class="investment">R$ 150K investidos</span>
+                            <span class="return">R$ 2.4M retorno</span>
+                            <span class="roi-value">1.600% ROI</span>
+                        </div>
+                        <div class="roi-item">
+                            <span class="partner">Xbox Game Pass</span>
+                            <span class="investment">R$ 100K investidos</span>
+                            <span class="return">R$ 1.8M retorno</span>
+                            <span class="roi-value">1.800% ROI</span>
+                        </div>
+                    </div>
+                    <p class="evidence-conclusion">
+                        <strong>ROI médio: 1.700% - Padrão da economia digital</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Strategy Section -->
+    <section class="final-section">
+        <div class="container">
+            <h2 class="section-title">🏆 Estratégia de Fechamento</h2>
+            
+            <div class="closing-strategy">
+                <div class="closing-card">
+                    <h3>🎯 Tréplica Vitoriosa</h3>
+                    <div class="closing-speech">
+                        <p><strong>"Em síntese, respeitamos profundamente o trabalho dos nossos colegas no setor alimentício."</strong></p>
+                        
+                        <p>Reconhecemos a expertise técnica da <strong>Laiza</strong>, a criatividade excepcional do <strong>Gean e Henrique</strong>, e o potencial do produto que desenvolveram.</p>
+                        
+                        <p>Porém, é fundamental entender que <strong>não somos concorrentes</strong>. Operamos em universos completamente diferentes:</p>
+                        
+                        <ul>
+                            <li><strong>Eles:</strong> Produtos físicos, logística complexa, margem limitada</li>
+                            <li><strong>Nós:</strong> Produtos digitais, distribuição instantânea, escala global</li>
+                        </ul>
+                        
+                        <p>Nossos números não são impossíveis - são o resultado natural da <strong>economia digital moderna</strong>, onde 360 milhões de usuários podem acessar nosso produto simultaneamente.</p>
+                        
+                        <p><strong>Vemos oportunidades de colaboração, não competição. Juntos, podemos criar experiências únicas que unam entretenimento digital e produtos físicos.</strong></p>
+                        
+                        <p class="final-line"><strong>"Os Subestimados acreditam no poder da parceria, não da rivalidade desnecessária."</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Os Subestimados Gaming Studio</h3>
+                    <p>Preparados para qualquer debate. Armados com dados, evidências e respeito pelos oponentes.</p>
+                    <p><strong>Produto:</strong> Exorcismo: Ritual Final</p>
+                    <p><strong>Estratégia:</strong> Vitória através da verdade</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Arsenal de Debate</h4>
+                    <ul>
+                        <li><a href="#arguments">Argumentos Iniciais</a></li>
+                        <li><a href="#replies">Réplicas Rápidas</a></li>
+                        <li><a href="#evidence">Banco de Evidências</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Parcerias Comprovadas</h4>
+                    <ul>
+                        <li>Steam Partnership - 1.700% ROI</li>
+                        <li>PlayStation Store - 1.600% ROI</li>
+                        <li>Xbox Game Pass - 1.800% ROI</li>
+                        <li>YouTube Marketing - 12.3M views</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato Pós-Debate</h4>
+                    <p>Para discussões construtivas e oportunidades de parceria</p>
+                    <p>debate@ossubestimados.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Os Subestimados Gaming Studio. Preparação estratégica para debate acadêmico.</p>
+                <p><strong>Lema:</strong> "Subestimaram nossos números, não subestimarão nossa preparação."</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Battle System for Os Subestimados
+        class BattleSystem {
+            constructor() {
+                this.battleMode = false;
+                this.debateTimer = null;
+                this.currentPhase = 'preparation';
+                this.shortcuts = new Map();
+                this.particles = [];
+                this.achievements = new Map();
+                
+                this.init();
+            }
+
+            init() {
+                this.setupCursor();
+                this.setupParticles();
+                this.setupKeyboardShortcuts();
+                this.setupScrollEffects();
+                this.setupIntersectionObserver();
+                this.setupEventListeners();
+                this.showWelcomeMessage();
+                
+                console.log('%c⚔️ BATTLE SYSTEM ONLINE', 'color: #b71c1c; font-size: 20px; font-weight: bold;');
+            }
+
+            setupCursor() {
+                const cursor = document.querySelector('.cursor');
+                if (!cursor) return;
+
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX - 10 + 'px';
+                    cursor.style.top = e.clientY - 10 + 'px';
+                });
+
+                document.addEventListener('mouseenter', () => {
+                    cursor.style.opacity = '1';
+                });
+
+                document.addEventListener('mouseleave', () => {
+                    cursor.style.opacity = '0';
+                });
+
+                // Hover effects
+                document.querySelectorAll('a, button, .card, .stat').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.classList.add('hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.classList.remove('hover');
+                    });
+                });
+            }
+
+            setupParticles() {
+                const particlesContainer = document.getElementById('particles');
+                if (!particlesContainer) return;
+
+                const createParticle = () => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                    particle.style.opacity = Math.random() * 0.5 + 0.2;
+                    particlesContainer.appendChild(particle);
+
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 6000);
+                };
+
+                // Create particles continuously
+                setInterval(createParticle, 300);
+            }
+
+            setupKeyboardShortcuts() {
+                const shortcuts = {
+                    'h': () => this.toggleBattleHUD(),
+                    't': () => this.toggleDebateTimer(),
+                    'b': () => this.toggleBattleMode(),
+                    '1': () => this.startDebatePhase('opening'),
+                    '2': () => this.startDebatePhase('reply'), 
+                    '3': () => this.startDebatePhase('closing'),
+                    ' ': (e) => {
+                        e.preventDefault();
+                        this.showMotivationalQuote();
+                    },
+                    'Escape': () => this.toggleZenMode(),
+                    'Enter': () => this.exportDebateGuide(),
+                    'ArrowUp': (e) => {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    },
+                    'ArrowDown': (e) => {
+                        e.preventDefault();
+                        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                    }
+                };
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+                    
+                    const handler = shortcuts[e.key];
+                    if (handler) {
+                        handler(e);
+                    }
+                });
+            }
+
+            setupScrollEffects() {
+                let ticking = false;
+                
+                const updateScrollEffects = () => {
+                    const scrolled = window.pageYOffset;
+                    const header = document.getElementById('header');
+                    
+                    if (header) {
+                        header.classList.toggle('scrolled', scrolled > 100);
+                    }
+
+                    // Parallax effect on hero
+                    const hero = document.querySelector('.hero');
+                    if (hero) {
+                        hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+                    }
+
+                    ticking = false;
+                };
+
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        requestAnimationFrame(updateScrollEffects);
+                        ticking = true;
+                    }
+                });
+            }
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                if (index % 2 === 0) {
+                                    entry.target.classList.add('animate-in-left');
+                                } else {
+                                    entry.target.classList.add('animate-in-right');
+                                }
+                            }, index * 100);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                document.querySelectorAll('.card, .strategy-card, .concept-card, .argument-card, .reply-category, .evidence-card').forEach(el => {
+                    observer.observe(el);
+                });
+            }
+
+            setupEventListeners() {
+                // Double-click to highlight
+                document.querySelectorAll('.card, .strategy-card, .argument-card, .reply-card').forEach(card => {
+                    card.addEventListener('dblclick', () => {
+                        card.classList.toggle('highlighted');
+                        this.showToast(card.classList.contains('highlighted') ? 
+                            '⭐ Card destacado para referência!' : 
+                            '✨ Destaque removido', 'info');
+                    });
+                });
+
+                // Smooth scroll for navigation
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = document.querySelector(anchor.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                            this.highlightSection(target);
+                        }
+                    });
+                });
+            }
+
+            toggleBattleHUD() {
+                const hud = document.getElementById('battle-hud');
+                const shortcuts = document.getElementById('shortcuts-panel');
+                
+                hud.classList.toggle('active');
+                shortcuts.classList.toggle('active');
+                
+                this.showToast(hud.classList.contains('active') ? 
+                    '⚔️ HUD de Batalha Ativado!' : 
+                    '🔧 HUD Ocultado', 'battle');
+            }
+
+            toggleDebateTimer() {
+                const hud = document.getElementById('battle-hud');
+                if (!hud.classList.contains('active')) {
+                    hud.classList.add('active');
+                    document.getElementById('shortcuts-panel').classList.add('active');
+                }
+                this.showToast('⏱️ Timer de Debate Pronto!', 'info');
+            }
+
+            startDebatePhase(phase) {
+                const durations = {
+                    'opening': 5 * 60,
+                    'reply': 3 * 60,
+                    'closing': 3 * 60
+                };
+
+                const phaseNames = {
+                    'opening': 'Argumentos Iniciais',
+                    'reply': 'Réplica',
+                    'closing': 'Fechamento'
+                };
+
+                let timeLeft = durations[phase];
+                this.currentPhase = phase;
+
+                const timerDisplay = document.querySelector('.timer-time');
+                const phaseDisplay = document.querySelector('.timer-phase');
+
+                if (!timerDisplay || !phaseDisplay) return;
+
+                phaseDisplay.textContent = phaseNames[phase];
+
+                if (this.debateTimer) {
+                    clearInterval(this.debateTimer);
+                }
+
+                this.debateTimer = setInterval(() => {
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+
+                    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                    if (timeLeft === 60) {
+                        this.showToast('⚠️ 1 MINUTO RESTANTE!', 'warning');
+                        this.pulseTimer();
+                    } else if (timeLeft === 30) {
+                        this.showToast('🚨 30 SEGUNDOS RESTANTES!', 'error');
+                        this.pulseTimer();
+                    } else if (timeLeft === 0) {
+                        this.showToast('⏰ TEMPO ESGOTADO!', 'error');
+                        this.stopDebateTimer();
+                        return;
+                    }
+
+                    timeLeft--;
+                }, 1000);
+
+                this.showToast(`🎯 ${phaseNames[phase]} iniciado! ${Math.floor(timeLeft/60)} minutos`, 'battle');
+            }
+
+            stopDebateTimer() {
+                if (this.debateTimer) {
+                    clearInterval(this.debateTimer);
+                    this.debateTimer = null;
+                }
+
+                const timerDisplay = document.querySelector('.timer-time');
+                const phaseDisplay = document.querySelector('.timer-phase');
+
+                if (timerDisplay && phaseDisplay) {
+                    timerDisplay.textContent = '00:00';
+                    phaseDisplay.textContent = 'Parado';
+                }
+
+                this.showToast('⏹️ Timer parado', 'info');
+            }
+
+            pulseTimer() {
+                const timerDisplay = document.querySelector('.timer-time');
+                if (timerDisplay) {
+                    timerDisplay.style.animation = 'pulse 0.5s ease-in-out 3';
+                    setTimeout(() => {
+                        timerDisplay.style.animation = '';
+                    }, 1500);
+                }
+            }
+
+            toggleBattleMode() {
+                this.battleMode = !this.battleMode;
+                document.body.classList.toggle('battle-mode', this.battleMode);
+
+                if (this.battleMode) {
+                    this.showToast('⚔️ MODO BATALHA ATIVADO!', 'battle');
+                    this.startBattleEffects();
+                } else {
+                    this.showToast('🕊️ Modo Normal Restaurado', 'info');
+                    this.stopBattleEffects();
+                }
+            }
+
+            startBattleEffects() {
+                // Intensify particle generation
+                const particlesContainer = document.getElementById('particles');
+                if (particlesContainer) {
+                    this.battleParticleInterval = setInterval(() => {
+                        for (let i = 0; i < 3; i++) {
+                            const particle = document.createElement('div');
+                            particle.className = 'particle';
+                            particle.style.left = Math.random() * 100 + '%';
+                            particle.style.background = Math.random() > 0.5 ? '#b71c1c' : '#ff6600';
+                            particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                            particlesContainer.appendChild(particle);
+
+                            setTimeout(() => particle.remove(), 4000);
+                        }
+                    }, 100);
+                }
+            }
+
+            stopBattleEffects() {
+                if (this.battleParticleInterval) {
+                    clearInterval(this.battleParticleInterval);
+                }
+            }
+
+            toggleZenMode() {
+                const hud = document.getElementById('battle-hud');
+                const shortcuts = document.getElementById('shortcuts-panel');
+                const header = document.getElementById('header');
+
+                const isZen = header.style.opacity === '0';
+
+                header.style.opacity = isZen ? '1' : '0';
+                hud.style.opacity = isZen ? '1' : '0';
+                shortcuts.style.opacity = isZen ? '1' : '0';
+
+                this.showToast(isZen ? 
+                    '🧠 Modo Normal Restaurado' : 
+                    '🧘‍♂️ Modo Zen Ativado - Foco Total!', 'info');
+            }
+
+            showMotivationalQuote() {
+                const quotes = [
+                    '⚔️ "A preparação é a chave da vitória!"',
+                    '🎯 "Argumentos afiados, evidências sólidas!"',
+                    '🛡️ "Defesa impenetrável, ataque preciso!"',
+                    '🏆 "Os Subestimados sempre entregam!"',
+                    '🎮 "Gaming digital, realidade diferente!"',
+                    '📊 "Dados não mentem, números não falham!"',
+                    '⚡ "Cada réplica é uma obra de arte!"',
+                    '🔥 "Transformamos pressão em performance!"'
+                ];
+
+                const quote = quotes[Math.floor(Math.random() * quotes.length)];
+                this.showToast(quote, 'battle', 4000);
+            }
+
+            highlightSection(section) {
+                section.style.animation = 'glowPulse 2s ease-in-out';
+                setTimeout(() => {
+                    section.style.animation = '';
+                }, 2000);
+            }
+
+            exportDebateGuide() {
+                try {
+                    const guideData = {
+                        timestamp: new Date().toISOString(),
+                        title: "Os Subestimados - Guia Completo de Debate",
+                        estrategia_principal: "Setores diferentes, realidades diferentes",
+                        
+                        conceitos_profissionais: {
+                            metodo_star: {
+                                situacao: "Mercado indie saturado, competição alta",
+                                tarefa: "Lançar jogo de horror com ROI positivo em 2 meses",
+                                acao: "Parcerias estratégicas + timing Halloween + demo viral",
+                                resultado: "2.8M downloads, R$ 8.2M receita, ROI 1.700%"
+                            },
+                            soft_hard_skills: {
+                                hard: ["Desenvolvimento", "Análise de dados", "Marketing digital"],
+                                soft: ["Comunicação", "Liderança", "Trabalho colaborativo"],
+                                insight: "Combinação equilibrada = sucesso"
+                            },
+                            stakeholders: {
+                                primarios: ["Steam (42%)", "PlayStation (30%)", "Xbox (22%)"],
+                                secundarios: ["50+ influencers", "12.3M views", "Reviews especializadas"]
+                            }
+                        },
+                        
+                        argumentos_iniciais: [
+                            "0-1min: Apresentação respeitosa",
+                            "1-2min: Esclarecimento sobre setores diferentes",
+                            "2-3min: Dados multiplataforma (360M usuários)",
+                            "3-4min: Timing estratégico Halloween",
+                            "4-5min: Comparação conservadora com sucessos"
+                        ],
+                        
+                        arsenal_replicas: {
+                            numeros_irreais: "0.78% de 360M usuários = matemática básica",
+                            concorrencia: "Setores complementares, não competitivos",
+                            roi_impossivel: "Economia digital: 70% margem + escala global",
+                            reconhecimento: "Laiza (expertise), Gean/Henrique (criatividade)"
+                        },
+                        
+                        evidencias: {
+                            plataformas: "Steam 132M + PlayStation 108M + Xbox 120M = 360M+",
+                            comparacao: "Conservador vs Phasmophobia (10M), Among Us (500M)",
+                            roi_parcerias: "Steam 1.700%, PlayStation 1.600%, Xbox 1.800%"
+                        },
+                        
+                        fechamento_vitorioso: "Reconhecimento + Diferenciação + Parceria = Vitória Respeitosa",
+                        
+                        atalhos_sistema: {
+                            "H": "Toggle HUD", "T": "Timer", "B": "Battle Mode",
+                            "1/2/3": "Fases", "SPACE": "Motivação", "ESC": "Zen Mode"
+                        }
+                    };
+
+                    const blob = new Blob([JSON.stringify(guideData, null, 2)], { 
+                        type: 'application/json' 
+                    });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `os-subestimados-battle-guide-${new Date().toISOString().split('T')[0]}.json`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+
+                    this.showToast('📋 Guia de Batalha Exportado!', 'success');
+
+                } catch (error) {
+                    this.showToast('❌ Erro na exportação', 'error');
+                    console.error('Export error:', error);
+                }
+            }
+
+            showToast(message, type = 'info', duration = 4000) {
+                // Remove existing toasts
+                document.querySelectorAll('.toast').forEach(toast => toast.remove());
+
+                const toast = document.createElement('div');
+                toast.className = `toast toast-${type}`;
+                
+                const icons = {
+                    'battle': '⚔️',
+                    'success': '✅',
+                    'error': '❌',
+                    'warning': '⚠️',
+                    'info': 'ℹ️'
+                };
+
+                toast.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 0.8rem;">
+                        <span style="font-size: 1.5rem;">${icons[type] || '📢'}</span>
+                        <span>${message}</span>
+                    </div>
+                `;
+
+                document.body.appendChild(toast);
+
+                // Trigger animation
+                requestAnimationFrame(() => {
+                    toast.classList.add('show');
+                });
+
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        if (toast.parentNode) {
+                            toast.remove();
+                        }
+                    }, 400);
+                }, duration);
+            }
+
+            showWelcomeMessage() {
+                setTimeout(() => {
+                    this.showToast('🎯 Os Subestimados Battle System Online!', 'battle');
+                }, 1000);
+
+                setTimeout(() => {
+                    this.showToast('💡 Pressione H para HUD, SPACE para motivação!', 'info');
+                }, 3000);
+
+                setTimeout(() => {
+                    this.showMotivationalQuote();
+                }, 6000);
+            }
+        }
+
+        // Global functions for onclick handlers
+        function toggleBattleHUD() {
+            window.battleSystem.toggleBattleHUD();
+        }
+
+        function startDebatePhase(phase) {
+            window.battleSystem.startDebatePhase(phase);
+        }
+
+        function stopDebateTimer() {
+            window.battleSystem.stopDebateTimer();
+        }
+
+        function exportDebateGuide() {
+            window.battleSystem.exportDebateGuide();
+        }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            window.battleSystem = new BattleSystem();
+            
+            // Console styling
+            console.log('%c⚔️ OS SUBESTIMADOS BATTLE READY', 'color: #b71c1c; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);');
+            console.log('%c🎯 Sistema de Batalha Carregado!', 'color: #4caf50; font-size: 16px; font-weight: bold;');
+            console.log('%c🛡️ Defesas Ativadas!', 'color: #2196f3; font-size: 14px;');
+            console.log('%c🏆 Preparados para DOMINAR!', 'color: #ffd700; font-size: 16px; font-weight: bold;');
+            console.log('%c⌨️ Atalhos: H(HUD), T(Timer), B(Battle), 1/2/3(Fases), SPACE(Motivação)', 'color: #ff9800; font-size: 12px;');
+        });
+
+        // Motivational quotes interval
+        setInterval(() => {
+            if (window.battleSystem && Math.random() > 0.7) {
+                window.battleSystem.showMotivationalQuote();
+            }
+        }, 180000); // Every 3 minutes
+    </script>
+</body>
+</html>
